@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello, Dockerized Flask App!"
+    return "Hello, Dockerized Flask App modified!"
 
 @app.route("/api")
 def api():
