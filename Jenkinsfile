@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build and Test') {
             steps {
-                sh 'docker build -t jenkinsapp:latest .'
+                sh 'docker build --no-cache -t jenkinsapp:latest .'
             }
         }
         stage('Push to Registry') {
