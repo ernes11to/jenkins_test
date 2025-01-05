@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello, Dockerized Flask App modified to test webhook!"
+    return "Hello, Dockerized Flask App modified to tests webhook!"
 
 @app.route("/api")
 def api():
