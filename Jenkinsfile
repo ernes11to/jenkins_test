@@ -31,7 +31,7 @@ pipeline {
     }
     post {
         success {
-            echo 'Pipeline ejecutado exitosamente.'
+            echo 'Pipeline ejecutado exitosamente .'
         }
         failure {
             echo 'Error en la ejecución del pipeline.'
