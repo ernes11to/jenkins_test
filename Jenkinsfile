@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'kubectl --kubeconfig=/home/config apply -f k8s/'
-                sh 'kubectl --kubeconfig=/home/config apply -rollout restart deployment flask-app'
+                sh 'kubectl --kubeconfig=/home/config rollout restart deployment flask-app'
             }
         }
         stage('Run End-to-End Tests') {
