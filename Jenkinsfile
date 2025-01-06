@@ -21,6 +21,7 @@ pipeline {
             steps {
                 sh 'kubectl --kubeconfig=/home/config apply -f k8s/'
                 sh 'kubectl --kubeconfig=/home/config rollout restart deployment flask-app'
+                sh 'kubectl --kubeconfig=/home/config rollout status deployment flask-app --timeout=60s'
             }
         }
         stage('Run End-to-End Tests') {
