@@ -1,22 +1,27 @@
-from flask import Flask
-from prometheus_flask_exporter import PrometheusMetrics
+from flask import Flask, render_template_string
+import requests
 
 app = Flask(__name__)
 
-# Inicializa PrometheusMetrics para crear automáticamente el endpoint /metrics
-metrics = PrometheusMetrics(app)
-
-# Opcional: Define métricas personalizadas
-# Por ejemplo: un contador para rastrear el número de visitas a la página principal
-metrics.info('app_info', 'Application Info', version='1.0.0')
-
 @app.route("/")
-def home():
-    return "Hello, Dockerized Flask App!"
+def index():
+    try:
+        res = requests.get("http://x.x.x.x:5000/hello", timeout=3)
+        msg = res.json().get("message", "Sin respuesta")
+    except Exception as e:
+        msg = f"Error: {e}"
 
-@app.route("/api")
-def api():
-    return {"message": "This is a simple API"}
+    html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head><title>Frontend en AWS</title></head>
+    <body>
+        <h1>Respuesta desde GCP:</h1>
+        <p>{{{{ msg }}}}</p>
+    </body>
+    </html>
+    """
+    return render_template_string(html, msg=msg)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=80)
