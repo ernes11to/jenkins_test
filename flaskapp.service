@@ -1,0 +1,13 @@
+[Unit]
+Description=Flask frontend service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/jenkins_test
+ExecStart=/usr/bin/python3 /home/ubuntu/jenkins_test/app.py
+Restart=always
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
